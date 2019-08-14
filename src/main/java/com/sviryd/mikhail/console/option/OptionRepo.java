@@ -1,4 +1,4 @@
-package com.sviryd.mikhail.console.userExecution;
+package com.sviryd.mikhail.console.option;
 
 import java.util.HashMap;
 

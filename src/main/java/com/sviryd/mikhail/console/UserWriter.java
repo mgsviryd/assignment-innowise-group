@@ -11,10 +11,9 @@ import java.util.List;
 
 @AllArgsConstructor
 public class UserWriter {
-    private List<User> users;
     private File dataFile;
 
-    private void rewrite() throws IOException {
+    public void rewrite(List<User> users) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(dataFile)))) {
             for (User user : users)
@@ -22,7 +21,7 @@ public class UserWriter {
         }
     }
 
-    private void append() throws IOException {
+    public void append(List<User> users) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(dataFile)))) {
             out.reset();

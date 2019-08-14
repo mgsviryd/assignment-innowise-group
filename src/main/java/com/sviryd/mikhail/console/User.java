@@ -1,19 +1,16 @@
 package com.sviryd.mikhail.console;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -28,23 +25,12 @@ public class User implements Serializable {
     @Size(min = 1,
             max = 3,
             message = "Number of unique roles must be in range from ${min} to ${max} inclusive.")
-    private Set<String> roles;
+    private List<String> roles;
     @Size(min = 1,
             max = 3,
-            message = "Number of telephones must be in range from ${min} to ${max} inclusive.")
-    @Valid
-    private List<TelephoneNumber> numbers;
+            message = "Number of phone numbers must be in range from ${min} to ${max} inclusive.")
+    private List<@Pattern(regexp = "375[0-9]{2}\\s[0-9]{7}") String> phoneNumbers;
 
-
-    public void addTelephoneNumber(String number) {
-        if (numbers == null) numbers = new ArrayList<>();
-        numbers.add(new TelephoneNumber(number));
-    }
-
-    public void addRoles(String role) {
-        if (roles == null) roles = new HashSet<>();
-        roles.add(role);
-    }
 
     public static void main(String[] args) {
         ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
@@ -55,5 +41,19 @@ public class User implements Serializable {
         for (ConstraintViolation<User> violation : violations) {
             violation.getMessage();
         }
+    }
+
+    public List<String> getRoles() {
+        if (roles == null) {
+            return Collections.emptyList();
+        }
+        return roles;
+    }
+
+    public List<String> getPhoneNumbers() {
+        if (roles == null) {
+            return Collections.emptyList();
+        }
+        return phoneNumbers;
     }
 }
