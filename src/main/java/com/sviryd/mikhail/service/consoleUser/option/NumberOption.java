@@ -27,7 +27,7 @@ public class NumberOption extends Option {
 
     @Override
     public void process(Scanner scanner) throws Exception {
-        final String input = scanner.next();
+        final String input = scanner.nextLine();
         patternValidationService.validate(input);
         final User user = userService.getUser();
         final List<String> phoneNumbers = user.getPhoneNumbers();

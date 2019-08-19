@@ -26,7 +26,7 @@ public class UploadUsersInNewFileOption extends Option {
     }
     @Override
     public void process(Scanner scanner) throws Exception {
-        final String input = scanner.next();
+        final String input = scanner.nextLine();
         File file = new File(input);
         if (file.exists()) {
             throw new OptionException("That file already exists.");

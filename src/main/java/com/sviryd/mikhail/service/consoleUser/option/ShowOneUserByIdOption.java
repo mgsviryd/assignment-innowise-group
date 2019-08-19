@@ -24,7 +24,7 @@ public class ShowOneUserByIdOption extends Option {
 
     @Override
     public void process(Scanner scanner) throws OptionException {
-        final String input = scanner.next();
+        final String input = scanner.nextLine();
         final int id;
         try {
             id = Integer.valueOf(input);

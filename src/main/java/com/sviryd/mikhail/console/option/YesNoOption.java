@@ -22,7 +22,7 @@ public class YesNoOption extends Option {
 
     @Override
     public void process(Scanner scanner) throws OptionException {
-        final String input = scanner.next();
+        final String input = scanner.nextLine();
         if (input.equalsIgnoreCase(YES)) {
             setNext(yesOption);
         } else if (input.equalsIgnoreCase(NO)) {

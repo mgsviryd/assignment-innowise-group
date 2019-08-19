@@ -21,7 +21,7 @@ public class LastNameOption extends Option {
     }
     @Override
     public void process(Scanner scanner) {
-        final String input = scanner.next();
+        final String input = scanner.nextLine();
         User user = userService.getUser();
         user.setLastName(input);
     }

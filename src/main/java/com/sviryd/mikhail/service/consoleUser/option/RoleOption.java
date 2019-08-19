@@ -23,7 +23,7 @@ public class RoleOption extends Option {
 
     @Override
     public void process(Scanner scanner) throws Exception {
-        final String input = scanner.next();
+        final String input = scanner.nextLine();
         final User user = userService.getUser();
         final List<String> roles = user.getRoles();
         roles.add(input);

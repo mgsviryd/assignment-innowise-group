@@ -32,7 +32,6 @@ public class Console implements Closeable {
     public Console(ConsoleOptionHandler handler) {
         this.handler = handler;
         this.scanner = new Scanner(System.in);
-        this.scanner.useDelimiter("\n");
     }
 
     public Console(ConsoleOptionHandler handler, Scanner scanner) {

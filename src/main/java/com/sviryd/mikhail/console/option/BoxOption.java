@@ -21,7 +21,7 @@ public class BoxOption extends Option {
 
     @Override
     public void process(Scanner scanner) throws OptionException {
-        final String input = scanner.next();
+        final String input = scanner.nextLine();
         try {
             final Integer i = Integer.valueOf(input);
             setNext(options.get(i).getOption());
