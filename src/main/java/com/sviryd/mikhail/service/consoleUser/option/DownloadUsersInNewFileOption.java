@@ -9,17 +9,17 @@ import com.sviryd.mikhail.service.consoleUser.IConsoleUsersService;
 import java.io.File;
 import java.util.Scanner;
 
-public class UploadUsersAppendToOldFileOption extends Option {
+public class DownloadUsersInNewFileOption extends Option {
     private IConsoleUsersService service;
     private UserWriter writer;
 
-    public UploadUsersAppendToOldFileOption(String optionName) {
+    public DownloadUsersInNewFileOption(String optionName) {
         super(optionName);
         this.service = new ConsoleUsersService();
         this.writer = new UserWriter();
     }
 
-    public UploadUsersAppendToOldFileOption(String optionName, IConsoleUsersService service, UserWriter writer) {
+    public DownloadUsersInNewFileOption(String optionName, IConsoleUsersService service, UserWriter writer) {
         super(optionName);
         this.service = service;
         this.writer = writer;
@@ -28,11 +28,11 @@ public class UploadUsersAppendToOldFileOption extends Option {
     public void process(Scanner scanner) throws Exception {
         final String input = scanner.nextLine();
         File file = new File(input);
-        if (!file.exists()) {
-            throw new OptionException("The file '" + file + "' does not exist.");
+        if (file.exists()) {
+            throw new OptionException("That file already exists.");
         } else {
             try {
-                writer.append(file, service.findAll());
+                writer.rewrite(file, service.findAll());
             } catch (Exception e) {
                 throw new OptionException("Failed. " + e.getMessage());
             }

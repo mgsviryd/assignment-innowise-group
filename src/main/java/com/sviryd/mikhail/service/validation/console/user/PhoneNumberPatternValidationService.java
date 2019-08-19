@@ -1,4 +1,4 @@
-package com.sviryd.mikhail.service.validation;
+package com.sviryd.mikhail.service.validation.console.user;
 
 import lombok.AllArgsConstructor;
 

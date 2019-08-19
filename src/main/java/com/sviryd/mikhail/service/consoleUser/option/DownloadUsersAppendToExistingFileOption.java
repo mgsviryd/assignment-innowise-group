@@ -9,17 +9,17 @@ import com.sviryd.mikhail.service.consoleUser.IConsoleUsersService;
 import java.io.File;
 import java.util.Scanner;
 
-public class UploadUsersRewriteOldFileOption extends Option {
+public class DownloadUsersAppendToExistingFileOption extends Option {
     private IConsoleUsersService service;
     private UserWriter writer;
 
-    public UploadUsersRewriteOldFileOption(String optionName) {
+    public DownloadUsersAppendToExistingFileOption(String optionName) {
         super(optionName);
         this.service = new ConsoleUsersService();
         this.writer = new UserWriter();
     }
 
-    public UploadUsersRewriteOldFileOption(String optionName, IConsoleUsersService service, UserWriter writer) {
+    public DownloadUsersAppendToExistingFileOption(String optionName, IConsoleUsersService service, UserWriter writer) {
         super(optionName);
         this.service = service;
         this.writer = writer;
@@ -32,7 +32,7 @@ public class UploadUsersRewriteOldFileOption extends Option {
             throw new OptionException("The file '" + file + "' does not exist.");
         } else {
             try {
-                writer.rewrite(file, service.findAll());
+                writer.append(file, service.findAll());
             } catch (Exception e) {
                 throw new OptionException("Failed. " + e.getMessage());
             }

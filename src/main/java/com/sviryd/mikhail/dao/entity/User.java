@@ -6,16 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,18 +34,6 @@ public class User implements Serializable {
     private List<@Pattern(regexp = "375[0-9]{2}\\s[0-9]{7}",
             message = "Phone number mismatch '375** *******' template.") String> phoneNumbers;
 
-
-    public static void main(String[] args) {
-        ValidatorFactory vf = Validation.buildDefaultValidatorFactory();
-        Validator validator = vf.getValidator();
-        User user = new User();
-        user.setEmail("a@c1.c");
-        Set<ConstraintViolation<User>> violations = validator.validate(user);
-        for (ConstraintViolation<User> violation : violations) {
-            violation.getMessage();
-        }
-    }
-
     public List<String> getRoles() {
         if (roles == null) {
             return new ArrayList<>();
@@ -59,7 +42,7 @@ public class User implements Serializable {
     }
 
     public List<String> getPhoneNumbers() {
-        if (roles == null) {
+        if (phoneNumbers == null) {
             return new ArrayList<>();
         }
         return phoneNumbers;

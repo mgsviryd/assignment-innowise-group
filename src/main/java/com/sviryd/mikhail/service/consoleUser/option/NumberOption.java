@@ -4,7 +4,7 @@ import com.sviryd.mikhail.console.option.Option;
 import com.sviryd.mikhail.dao.entity.User;
 import com.sviryd.mikhail.service.consoleUser.ConsoleUserService;
 import com.sviryd.mikhail.service.consoleUser.IConsoleUserService;
-import com.sviryd.mikhail.service.validation.PhoneNumberPatternValidationService;
+import com.sviryd.mikhail.service.validation.console.user.PhoneNumberPatternValidationService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -32,5 +32,6 @@ public class NumberOption extends Option {
         final User user = userService.getUser();
         final List<String> phoneNumbers = user.getPhoneNumbers();
         phoneNumbers.add(input);
+        user.setPhoneNumbers(phoneNumbers);
     }
 }

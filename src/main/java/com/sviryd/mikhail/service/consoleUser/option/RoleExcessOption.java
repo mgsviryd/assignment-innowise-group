@@ -5,7 +5,7 @@ import com.sviryd.mikhail.console.exception.RepeatPreventException;
 import com.sviryd.mikhail.dao.entity.User;
 import com.sviryd.mikhail.service.consoleUser.ConsoleUserService;
 import com.sviryd.mikhail.service.consoleUser.IConsoleUserService;
-import com.sviryd.mikhail.service.validation.RolesSizeValidationService;
+import com.sviryd.mikhail.service.validation.console.user.RolesSizeValidationService;
 
 import javax.validation.ValidationException;
 import java.util.Scanner;

@@ -18,10 +18,15 @@ import com.sviryd.mikhail.service.consoleUser.option.RoleOption;
 import com.sviryd.mikhail.service.consoleUser.option.SaveUserOption;
 import com.sviryd.mikhail.service.consoleUser.option.ShowAllUsersOption;
 import com.sviryd.mikhail.service.consoleUser.option.ShowOneUserByIdOption;
+import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByEmailOption;
+import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByFirstNameOption;
+import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByLastNameOption;
+import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByNumberOption;
+import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByRoleOption;
 import com.sviryd.mikhail.service.consoleUser.option.UpdateUserOption;
-import com.sviryd.mikhail.service.consoleUser.option.UploadUsersAppendToOldFileOption;
-import com.sviryd.mikhail.service.consoleUser.option.UploadUsersInNewFileOption;
-import com.sviryd.mikhail.service.consoleUser.option.UploadUsersRewriteOldFileOption;
+import com.sviryd.mikhail.service.consoleUser.option.DownloadUsersAppendToExistingFileOption;
+import com.sviryd.mikhail.service.consoleUser.option.DownloadUsersInNewFileOption;
+import com.sviryd.mikhail.service.consoleUser.option.DownloadUsersRewriteExistingFileOption;
 
 import java.io.Closeable;
 import java.util.Scanner;
@@ -86,32 +91,24 @@ public class Console implements Closeable {
         // MAIN
         final FirstNameUserOption firstNameUserOption = new FirstNameUserOption("Enter first name: ");
         final FindOneUserByIdOption findOneUserByIdUpdateOption = new FindOneUserByIdOption("Enter user id: ");
-        final DeleteUserByIdOption deleteUserByIdOption = new DeleteUserByIdOption("Enter user id: ");
-        final ShowOneUserByIdOption showOneUserByIdOption = new ShowOneUserByIdOption("Enter user id: ");
-        final ShowAllUsersOption showAllUsersOption = new ShowAllUsersOption("User list:\\n");
-        final UploadUsersInNewFileOption uploadUsersInNewFileOption = new UploadUsersInNewFileOption("Enter absolute path to file (including file name): ");
-        final UploadUsersRewriteOldFileOption uploadUsersRewriteOldFileOption = new UploadUsersRewriteOldFileOption("Enter absolute path to file (including file name): ");
-        final UploadUsersAppendToOldFileOption uploadUsersAppendToOldFileOption = new UploadUsersAppendToOldFileOption("Enter absolute path to file (including file name): ");
+        final DeleteUserByIdOption delete = new DeleteUserByIdOption("Enter user id: ");
+        final BoxOption show = new BoxOption("Options:\n");
+        final BoxOption download = new BoxOption("Options:\n");
         final ExitOption exitOption = new ExitOption("EXIT");
+
         handler.addOption(2, firstNameUserOption);
         handler.addOption(3, findOneUserByIdUpdateOption);
-        handler.addOption(4, deleteUserByIdOption);
-        handler.addOption(5, showOneUserByIdOption);
-        handler.addOption(6, showAllUsersOption);
-        handler.addOption(7, uploadUsersInNewFileOption);
-        handler.addOption(8, uploadUsersRewriteOldFileOption);
-        handler.addOption(9, uploadUsersAppendToOldFileOption);
+        handler.addOption(4, delete);
+        handler.addOption(5, show);
+        handler.addOption(7, download);
         handler.addOption(10, exitOption);
 
         final BoxOption main = new BoxOption("Options:\n");
         main.addOption("Create user", firstNameUserOption);
         main.addOption("Update user", findOneUserByIdUpdateOption);
-        main.addOption("Delete user", deleteUserByIdOption);
-        main.addOption("Show user", showOneUserByIdOption);
-        main.addOption("Show all users", showAllUsersOption);
-        main.addOption("Upload in new file", uploadUsersInNewFileOption);
-        main.addOption("Upload in old file (rewrite)", uploadUsersRewriteOldFileOption);
-        main.addOption("Upload in old file (append)", uploadUsersAppendToOldFileOption);
+        main.addOption("Delete user", delete);
+        main.addOption("Show user/users", show);
+        main.addOption("Download", download);
         main.addOption("Exit", exitOption);
         handler.addOption(10, main);
         handler.setNext(1, 10);
@@ -251,6 +248,54 @@ public class Console implements Closeable {
         handler.setNext(44,45);
         handler.setNext(46, 40);
         handler.setNext(47, 10);
+
+        // DELETE
+        handler.setNext(4,10);
+
+        // SHOW
+        final ShowOneUserByIdOption showOneUserByIdOption = new ShowOneUserByIdOption("Enter user's id: ");
+        final ShowUsersByFirstNameOption showUsersByFirstNameOption = new ShowUsersByFirstNameOption("Enter user's first name: ");
+        final ShowUsersByLastNameOption showUsersByLastNameOption = new ShowUsersByLastNameOption("Enter user's last name: ");
+        final ShowUsersByEmailOption showUsersByEmailOption = new ShowUsersByEmailOption("Enter user's email: ");
+        final ShowUsersByRoleOption showUsersByRoleOption = new ShowUsersByRoleOption("Enter user's role: ");
+        final ShowUsersByNumberOption showUsersByNumberOption = new ShowUsersByNumberOption("Enter user's phone number: ");
+        final ShowAllUsersOption showAllUsersOption = new ShowAllUsersOption("List of users:\n");
+        show.addOption("Show user by id",showOneUserByIdOption);
+        show.addOption("Show users by first name", showUsersByFirstNameOption);
+        show.addOption("Show users by last name", showUsersByLastNameOption);
+        show.addOption("Show users by email", showUsersByEmailOption);
+        show.addOption("Show users by role", showUsersByRoleOption);
+        show.addOption("Show users by phone number", showUsersByNumberOption);
+        show.addOption("Show all users", showAllUsersOption);
+        show.addOption("Go to main menu", main);
+        handler.addOption(48, showOneUserByIdOption);
+        handler.addOption(49, showUsersByFirstNameOption);
+        handler.addOption(50, showUsersByLastNameOption);
+        handler.addOption(51, showUsersByEmailOption);
+        handler.addOption(52, showUsersByRoleOption);
+        handler.addOption(53, showUsersByNumberOption);
+        handler.addOption(54, showAllUsersOption);
+        handler.setNext(48, 5);
+        handler.setNext(49, 5);
+        handler.setNext(50, 5);
+        handler.setNext(51, 5);
+        handler.setNext(52, 5);
+        handler.setNext(53, 5);
+        handler.setNext(54, 5);
+
+        // DOWNLOAD
+        final DownloadUsersInNewFileOption downloadUsersInNewFileOption = new DownloadUsersInNewFileOption("Enter absolute path to file (including file name): ");
+        final DownloadUsersRewriteExistingFileOption downloadUsersRewriteExistingFileOption = new DownloadUsersRewriteExistingFileOption("Enter absolute path to file (including file name): ");
+        final DownloadUsersAppendToExistingFileOption downloadUsersAppendToExistingFileOption = new DownloadUsersAppendToExistingFileOption("Enter absolute path to file (including file name): ");
+        download.addOption("Download in new file", downloadUsersInNewFileOption);
+        download.addOption("Download in existing file (rewrite)", downloadUsersRewriteExistingFileOption);
+        download.addOption("Download in existing file (append)", downloadUsersAppendToExistingFileOption);
+        handler.addOption(55, downloadUsersInNewFileOption);
+        handler.addOption(56, downloadUsersRewriteExistingFileOption);
+        handler.addOption(57, downloadUsersAppendToExistingFileOption);
+        handler.setNext(55, 10);
+        handler.setNext(56, 10);
+        handler.setNext(57, 10);
 
         Scanner scanner = new Scanner(System.in);
         Console console = new Console(handler, scanner);

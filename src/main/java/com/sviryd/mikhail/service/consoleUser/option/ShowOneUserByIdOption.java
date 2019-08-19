@@ -12,7 +12,6 @@ public class ShowOneUserByIdOption extends Option {
     private IConsoleUsersService usersService;
 
     public ShowOneUserByIdOption(String optionName) {
-
         super(optionName);
         this.usersService = new ConsoleUsersService();
     }

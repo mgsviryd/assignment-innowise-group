@@ -4,7 +4,7 @@ import com.sviryd.mikhail.console.option.Option;
 import com.sviryd.mikhail.dao.entity.User;
 import com.sviryd.mikhail.service.consoleUser.ConsoleUserService;
 import com.sviryd.mikhail.service.consoleUser.IConsoleUserService;
-import com.sviryd.mikhail.service.validation.EmailPatternValidationService;
+import com.sviryd.mikhail.service.validation.console.user.EmailPatternValidationService;
 
 import java.util.Scanner;
 

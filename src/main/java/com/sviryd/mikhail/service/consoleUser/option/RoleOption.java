@@ -27,5 +27,6 @@ public class RoleOption extends Option {
         final User user = userService.getUser();
         final List<String> roles = user.getRoles();
         roles.add(input);
+        user.setRoles(roles);
     }
 }
