@@ -1,19 +1,23 @@
 package com.sviryd.mikhail.console.option;
 
-import com.sviryd.mikhail.console.ConsoleUserModel;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Scanner;
 
 @Getter
 @Setter
 public abstract class Option {
     protected String optionName;
-    private Option next;
+    protected Option next;
 
-    public abstract void execute(ConsoleUserModel m);
-
-    public void print() {
-        System.out.println(optionName + ":  ");
+    protected Option(String optionName) {
+        this.optionName = optionName;
     }
-    public String toString(){return optionName;}
+
+    public abstract void process(Scanner scanner) throws Exception;
+
+    public String toString() {
+        return optionName;
+    }
 }
