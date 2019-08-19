@@ -85,7 +85,7 @@ public class Console implements Closeable {
 
         // MAIN
         final FirstNameUserOption firstNameUserOption = new FirstNameUserOption("Enter first name: ");
-//        final FindOneUserByIdOption findOneUserByIdOption = new FindOneUserByIdOption("Enter user id: ");
+        final FindOneUserByIdOption findOneUserByIdUpdateOption = new FindOneUserByIdOption("Enter user id: ");
         final DeleteUserByIdOption deleteUserByIdOption = new DeleteUserByIdOption("Enter user id: ");
         final ShowOneUserByIdOption showOneUserByIdOption = new ShowOneUserByIdOption("Enter user id: ");
         final ShowAllUsersOption showAllUsersOption = new ShowAllUsersOption("User list:\\n");
@@ -94,7 +94,7 @@ public class Console implements Closeable {
         final UploadUsersAppendToOldFileOption uploadUsersAppendToOldFileOption = new UploadUsersAppendToOldFileOption("Enter absolute path to file (including file name): ");
         final ExitOption exitOption = new ExitOption("EXIT");
         handler.addOption(2, firstNameUserOption);
-//        handler.addOption(3, findOneUserByIdOption);
+        handler.addOption(3, findOneUserByIdUpdateOption);
         handler.addOption(4, deleteUserByIdOption);
         handler.addOption(5, showOneUserByIdOption);
         handler.addOption(6, showAllUsersOption);
@@ -105,7 +105,7 @@ public class Console implements Closeable {
 
         final BoxOption main = new BoxOption("Options:\n");
         main.addOption("Create user", firstNameUserOption);
-//        main.addOption("Update user", findOneUserByIdOption);
+        main.addOption("Update user", findOneUserByIdUpdateOption);
         main.addOption("Delete user", deleteUserByIdOption);
         main.addOption("Show user", showOneUserByIdOption);
         main.addOption("Show all users", showAllUsersOption);
@@ -130,7 +130,7 @@ public class Console implements Closeable {
         final SaveUserOption saveUserOption = new SaveUserOption("User is saved.\n");
 
         final BoxOption choseRole2 = new BoxOption("Options:\n");
-        choseRole2.addOption("Do you want to enter one more role?",roleOption2);
+        choseRole2.addOption("Do you want to enter one more role?", roleOption2);
         choseRole2.addOption("Do you want to enter the next field?", numberOption1);
         final BoxOption choseRole3 = new BoxOption("Options:\n");
         choseRole3.addOption("Do you want to enter one more role?", roleOption3);
@@ -139,7 +139,7 @@ public class Console implements Closeable {
         oneMoreRole.addOption("Do you want add one more role?", roleExcessOption);
         oneMoreRole.addOption("Do you want to enter the next field?", numberOption1);
         final BoxOption choseNumber2 = new BoxOption("Options:\n");
-        choseNumber2.addOption("Do you want to enter one more number?",numberOption2);
+        choseNumber2.addOption("Do you want to enter one more number?", numberOption2);
         choseNumber2.addOption("Do you want to save new user?", saveUserOption);
         final BoxOption choseNumber3 = new BoxOption("Options:\n");
         choseNumber3.addOption("Do you want to enter one more role?", numberOption3);
@@ -177,13 +177,9 @@ public class Console implements Closeable {
         handler.setNext(22, 23);
         handler.setNext(24, 25);
         handler.setNext(26, 20);
-        handler.setNext(27,10);
+        handler.setNext(27, 10);
 
         // UPDATE USER
-        final FindOneUserByIdOption findOneUserByIdUpdateOption = new FindOneUserByIdOption("Enter user id: ");
-        final BoxOption updateUser = new BoxOption("Options:\n");
-        updateUser.addOption("Enter user id", findOneUserByIdUpdateOption);
-        updateUser.addOption("Go to main menu", main);
         final FirstNameUserOption firstNameUpdateUserOption = new FirstNameUserOption("Enter first name: ");
         final LastNameOption lastNameUpdateOption = new LastNameOption("Enter last name: ");
         final EmailOption emailUpdateOption = new EmailOption("Enter email: ");
@@ -196,34 +192,17 @@ public class Console implements Closeable {
         final NumberOption numberUpdateOption3 = new NumberOption("Enter phone number(3): ");
         final NumberExcessOption numberUpdateExcessOption = new NumberExcessOption("Enter phone number: ");
         final UpdateUserOption updateUserOption = new UpdateUserOption("User is updated.\n");
-        handler.addOption(28, findOneUserByIdUpdateOption);
-        handler.addOption(29, updateUser);
-        handler.addOption(30, firstNameUpdateUserOption);
-        handler.addOption(31, lastNameUpdateOption);
-        handler.addOption(32, emailUpdateOption);
-        handler.addOption(33, roleUpdateOption1);
-        handler.addOption(34, roleUpdateOption2);
-        handler.addOption(35, roleUpdateOption3);
-        handler.addOption(36, roleUpdateExcessOption);
-        handler.addOption(37, numberUpdateOption1);
-        handler.addOption(38, numberUpdateOption2);
-        handler.addOption(39, numberUpdateOption3);
-        handler.addOption(40, numberUpdateExcessOption);
-        handler.addOption(41, updateUserOption);
-
 
         final BoxOption selectField = new BoxOption("Update field:\n");
-        selectField.addOption("first name",firstNameUpdateUserOption);
+        selectField.addOption("first name", firstNameUpdateUserOption);
         selectField.addOption("last name", lastNameUpdateOption);
         selectField.addOption("email", emailUpdateOption);
         selectField.addOption("roles", roleUpdateOption1);
         selectField.addOption("number", numberUpdateOption1);
         selectField.addOption("Save changes", updateUserOption);
-        handler.addOption(42,selectField);
-        handler.setNext(28, 42);
 
         final BoxOption choseUpdateRole2 = new BoxOption("Options:\n");
-        choseUpdateRole2.addOption("Do you want to change one more role?",roleUpdateOption2);
+        choseUpdateRole2.addOption("Do you want to change one more role?", roleUpdateOption2);
         choseUpdateRole2.addOption("Go back to fields?", selectField);
         final BoxOption choseUpdateRole3 = new BoxOption("Options:\n");
         choseUpdateRole3.addOption("Do you want to enter one more role?", roleUpdateOption3);
@@ -232,7 +211,7 @@ public class Console implements Closeable {
         oneMoreUpdateRole.addOption("Do you want add one more role?", roleUpdateExcessOption);
         oneMoreUpdateRole.addOption("Go back to fields?", selectField);
         final BoxOption choseUpdateNumber2 = new BoxOption("Options:\n");
-        choseUpdateNumber2.addOption("Do you want to enter one more number?",numberUpdateOption2);
+        choseUpdateNumber2.addOption("Do you want to enter one more number?", numberUpdateOption2);
         choseUpdateNumber2.addOption("Go back to fields?", selectField);
         final BoxOption choseUpdateNumber3 = new BoxOption("Options:\n");
         choseUpdateNumber3.addOption("Do you want to enter one more role?", numberUpdateOption3);
@@ -240,7 +219,38 @@ public class Console implements Closeable {
         final BoxOption oneMoreUpdateNumber = new BoxOption("Options:\n");
         oneMoreUpdateNumber.addOption("Do you want add one more phone number?", numberUpdateExcessOption);
         oneMoreUpdateNumber.addOption("Go back to fields?", selectField);
-
+        handler.addOption(30, firstNameUpdateUserOption);
+        handler.addOption(31, lastNameUpdateOption);
+        handler.addOption(32, emailUpdateOption);
+        handler.addOption(33, roleUpdateOption1);
+        handler.addOption(34, choseUpdateRole2);
+        handler.addOption(35, roleUpdateOption2);
+        handler.addOption(36, choseUpdateRole3);
+        handler.addOption(37, roleUpdateOption3);
+        handler.addOption(38, oneMoreUpdateRole);
+        handler.addOption(39, roleUpdateExcessOption);
+        handler.addOption(40, numberUpdateOption1);
+        handler.addOption(41, choseUpdateNumber2);
+        handler.addOption(42, numberUpdateOption2);
+        handler.addOption(43, choseUpdateNumber3);
+        handler.addOption(44, numberUpdateOption3);
+        handler.addOption(45, oneMoreUpdateNumber);
+        handler.addOption(46, numberUpdateExcessOption);
+        handler.addOption(47, updateUserOption);
+        handler.addOption(48, selectField);
+        handler.setNext(3, 48);
+        handler.setNext(30, 48);
+        handler.setNext(31, 48);
+        handler.setNext(32, 48);
+        handler.setNext(33, 34);
+        handler.setNext(35,36);
+        handler.setNext(37, 38);
+        handler.setNext(39, 33);
+        handler.setNext(40, 41);
+        handler.setNext(42,43);
+        handler.setNext(44,45);
+        handler.setNext(46, 40);
+        handler.setNext(47, 10);
 
         Scanner scanner = new Scanner(System.in);
         Console console = new Console(handler, scanner);
