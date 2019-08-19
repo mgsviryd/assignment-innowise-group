@@ -25,7 +25,7 @@ public class ConsoleUsersService implements IConsoleUsersService {
     }
 
     @Override
-    public User update(int id, User user) {
+    public User update(User user) {
         return dao.update(user);
     }
 

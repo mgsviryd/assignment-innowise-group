@@ -8,7 +8,7 @@ public interface IConsoleUsersService {
     void createTemporaryTable();
     void deleteTemporaryTable();
     boolean save(User user);
-    User update(int id, User user);
+    User update(User user);
     User findOne(int id);
     List<User> findByFirstName(String firstName);
     List<User> findByLastName(String lastName);
