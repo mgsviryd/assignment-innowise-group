@@ -4,29 +4,29 @@ import com.sviryd.mikhail.console.exception.ExitException;
 import com.sviryd.mikhail.console.exception.RepeatPreventException;
 import com.sviryd.mikhail.console.option.BoxOption;
 import com.sviryd.mikhail.console.option.Option;
-import com.sviryd.mikhail.service.consoleUser.option.DeleteUserByIdOption;
-import com.sviryd.mikhail.service.consoleUser.option.EmailOption;
-import com.sviryd.mikhail.service.consoleUser.option.ExitOption;
-import com.sviryd.mikhail.service.consoleUser.option.FindOneUserByIdOption;
-import com.sviryd.mikhail.service.consoleUser.option.FirstNameUserOption;
-import com.sviryd.mikhail.service.consoleUser.option.LastNameOption;
-import com.sviryd.mikhail.service.consoleUser.option.NumberExcessOption;
-import com.sviryd.mikhail.service.consoleUser.option.NumberOption;
-import com.sviryd.mikhail.service.consoleUser.option.OpenOption;
-import com.sviryd.mikhail.service.consoleUser.option.RoleExcessOption;
-import com.sviryd.mikhail.service.consoleUser.option.RoleOption;
-import com.sviryd.mikhail.service.consoleUser.option.SaveUserOption;
-import com.sviryd.mikhail.service.consoleUser.option.ShowAllUsersOption;
-import com.sviryd.mikhail.service.consoleUser.option.ShowOneUserByIdOption;
-import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByEmailOption;
-import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByFirstNameOption;
-import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByLastNameOption;
-import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByNumberOption;
-import com.sviryd.mikhail.service.consoleUser.option.ShowUsersByRoleOption;
-import com.sviryd.mikhail.service.consoleUser.option.UpdateUserOption;
-import com.sviryd.mikhail.service.consoleUser.option.DownloadUsersAppendToExistingFileOption;
-import com.sviryd.mikhail.service.consoleUser.option.DownloadUsersInNewFileOption;
-import com.sviryd.mikhail.service.consoleUser.option.DownloadUsersRewriteExistingFileOption;
+import com.sviryd.mikhail.service.console.user.option.DeleteUserByIdOption;
+import com.sviryd.mikhail.service.console.user.option.EmailOption;
+import com.sviryd.mikhail.service.console.user.option.ExitOption;
+import com.sviryd.mikhail.service.console.user.option.FindOneUserByIdOption;
+import com.sviryd.mikhail.service.console.user.option.FirstNameUserOption;
+import com.sviryd.mikhail.service.console.user.option.LastNameOption;
+import com.sviryd.mikhail.service.console.user.option.NumberExcessOption;
+import com.sviryd.mikhail.service.console.user.option.NumberOption;
+import com.sviryd.mikhail.service.console.user.option.OpenOption;
+import com.sviryd.mikhail.service.console.user.option.RoleExcessOption;
+import com.sviryd.mikhail.service.console.user.option.RoleOption;
+import com.sviryd.mikhail.service.console.user.option.SaveUserOption;
+import com.sviryd.mikhail.service.console.user.option.ShowAllUsersOption;
+import com.sviryd.mikhail.service.console.user.option.ShowOneUserByIdOption;
+import com.sviryd.mikhail.service.console.user.option.ShowUsersByEmailOption;
+import com.sviryd.mikhail.service.console.user.option.ShowUsersByFirstNameOption;
+import com.sviryd.mikhail.service.console.user.option.ShowUsersByLastNameOption;
+import com.sviryd.mikhail.service.console.user.option.ShowUsersByNumberOption;
+import com.sviryd.mikhail.service.console.user.option.ShowUsersByRoleOption;
+import com.sviryd.mikhail.service.console.user.option.UpdateUserOption;
+import com.sviryd.mikhail.service.console.user.option.DownloadUsersAppendToExistingFileOption;
+import com.sviryd.mikhail.service.console.user.option.DownloadUsersInNewFileOption;
+import com.sviryd.mikhail.service.console.user.option.DownloadUsersRewriteExistingFileOption;
 
 import java.io.Closeable;
 import java.util.Scanner;
@@ -46,7 +46,7 @@ public class Console implements Closeable {
     }
 
     public void open() {
-        Option next = handler.getMainOption();
+        Option next = handler.getOpenOption();
         while (true) {
             showOption(next);
             try {

@@ -23,15 +23,15 @@ public class ConsoleOptionHandler {
         return options.get(id);
     }
 
-    public void setNext(int currId, int nextId) {
-        options.get(currId).setNext(options.get(nextId));
+    public void setNext(int fromId, int toId) {
+        options.get(fromId).setNext(options.get(toId));
     }
 
     public void setOpenOption(int id) {
         open = options.get(id);
     }
 
-    public Option getMainOption() {
+    public Option getOpenOption() {
         return open;
     }
 }
