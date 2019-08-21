@@ -5,6 +5,7 @@ import com.sviryd.mikhail.dao.entity.User;
 import com.sviryd.mikhail.service.console.user.cache.IConsoleUserCacheService;
 import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUserCacheService;
 import com.sviryd.mikhail.service.validation.console.user.EmailPatternValidationService;
+import com.sviryd.mikhail.service.validation.exception.ValidationException;
 
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class EmailOption extends Option {
     }
 
     @Override
-    public void process(Scanner scanner) {
+    public void process(Scanner scanner) throws ValidationException {
         final String email = scanner.nextLine();
         User user = userService.getUser();
         validationService.validate(email);

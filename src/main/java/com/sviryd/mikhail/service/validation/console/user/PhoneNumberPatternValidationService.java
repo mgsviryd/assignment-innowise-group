@@ -1,9 +1,7 @@
 package com.sviryd.mikhail.service.validation.console.user;
 
+import com.sviryd.mikhail.service.validation.exception.ValidationException;
 import lombok.AllArgsConstructor;
-
-import javax.validation.ValidationException;
-
 
 @AllArgsConstructor
 public class PhoneNumberPatternValidationService {

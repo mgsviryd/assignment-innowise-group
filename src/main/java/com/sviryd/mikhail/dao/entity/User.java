@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +20,9 @@ public class User implements Serializable {
     private Integer id;
     private String firstName;
     private String lastName;
-    @Pattern(regexp = "[a-z0-9]+@[a-z]+.[a-z]+", message = "Your email is not like *@*.* where * is any sequence of characters and letters.")
     private String email;
-    @Size(min = 1,
-            max = 3,
-            message = "Number of unique roles must be in range from ${min} to ${max} inclusive.")
     private List<String> roles;
-    @Size(min = 1,
-            max = 3,
-            message = "Number of phone numbers must be in range from ${min} to ${max} inclusive.")
-    private List<@Pattern(regexp = "375[0-9]{2}\\s[0-9]{7}",
-            message = "Phone number mismatch '375** *******' template.") String> phoneNumbers;
+    private List<String> phoneNumbers;
 
     public List<String> getRoles() {
         if (roles == null) {

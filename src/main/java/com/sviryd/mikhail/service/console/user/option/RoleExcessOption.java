@@ -6,8 +6,8 @@ import com.sviryd.mikhail.dao.entity.User;
 import com.sviryd.mikhail.service.console.user.cache.IConsoleUserCacheService;
 import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUserCacheService;
 import com.sviryd.mikhail.service.validation.console.user.RolesSizeValidationService;
+import com.sviryd.mikhail.service.validation.exception.ValidationException;
 
-import javax.validation.ValidationException;
 import java.util.Scanner;
 
 public class RoleExcessOption extends Option {

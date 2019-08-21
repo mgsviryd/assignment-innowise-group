@@ -130,7 +130,7 @@ public class Console implements Closeable {
         final NumberOption numberOption2 = new NumberOption("Enter phone number(2): ");
         final NumberOption numberOption3 = new NumberOption("Enter phone number(3): ");
         final NumberExcessOption numberExcessOption = new NumberExcessOption("Enter phone number: ");
-        final SaveUserOption saveUserOption = new SaveUserOption("User is created.\n");
+        final SaveUserOption saveUserOption = new SaveUserOption("User was created.\n");
 
         final BoxOption choseRole2 = new BoxOption("Options:\n");
         choseRole2.addOption("Do you want to enter one more role?", roleOption2);

@@ -9,10 +9,8 @@ public class ConsoleUserCache implements IConsoleUserCache {
     private static final String CONSOLE_USER = ConsoleConfig.CONSOLE_USER_CACHE;
     @Override
     public User createTemporaryUser() {
-        User user = getUser();
-        if (user == null) {
-            user = (User) ConsoleCache.put(CONSOLE_USER, new User());
-        }
+        final User user = new User();
+        ConsoleCache.put(CONSOLE_USER, user);
         return user;
     }
 
