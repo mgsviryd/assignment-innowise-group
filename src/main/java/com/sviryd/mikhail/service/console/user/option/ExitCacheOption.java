@@ -1,35 +1,34 @@
-
 package com.sviryd.mikhail.service.console.user.option;
 
+import com.sviryd.mikhail.console.exception.ExitException;
 import com.sviryd.mikhail.console.option.Option;
-import com.sviryd.mikhail.dao.entity.User;
 import com.sviryd.mikhail.service.console.user.cache.IConsoleUserCacheService;
+import com.sviryd.mikhail.service.console.user.cache.IConsoleUsersCacheService;
 import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUserCacheService;
 import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUsersCacheService;
-import com.sviryd.mikhail.service.dao.IUserService;
 
 import java.util.Scanner;
 
-public class UpdateUserOption extends Option {
-    private IUserService usersService;
+public class ExitCacheOption extends Option {
     private IConsoleUserCacheService userService;
+    private IConsoleUsersCacheService usersService;
 
-    public UpdateUserOption(String optionName) {
+    public ExitCacheOption(String optionName) {
         super(optionName);
-        this.usersService = new ConsoleUsersCacheService();
         this.userService = new ConsoleUserCacheService();
+        this.usersService = new ConsoleUsersCacheService();
     }
 
-    public UpdateUserOption(String optionName, IUserService usersService, IConsoleUserCacheService userService) {
+    public ExitCacheOption(String optionName, IConsoleUserCacheService userService, IConsoleUsersCacheService usersService) {
         super(optionName);
-        this.usersService = usersService;
         this.userService = userService;
+        this.usersService = usersService;
     }
 
     @Override
     public void process(Scanner scanner) throws Exception {
-        final User user = userService.getUser();
-        usersService.update(user);
-        userService.clearFields();
+        userService.deleteTemporaryUser();
+        usersService.deleteTemporaryTable();
+        throw new ExitException();
     }
 }

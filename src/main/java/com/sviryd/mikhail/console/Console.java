@@ -5,8 +5,11 @@ import com.sviryd.mikhail.console.exception.RepeatPreventException;
 import com.sviryd.mikhail.console.option.BoxOption;
 import com.sviryd.mikhail.console.option.Option;
 import com.sviryd.mikhail.service.console.user.option.DeleteUserByIdOption;
+import com.sviryd.mikhail.service.console.user.option.DownloadUsersAppendToExistingFileOption;
+import com.sviryd.mikhail.service.console.user.option.DownloadUsersInNewFileOption;
+import com.sviryd.mikhail.service.console.user.option.DownloadUsersRewriteExistingFileOption;
 import com.sviryd.mikhail.service.console.user.option.EmailOption;
-import com.sviryd.mikhail.service.console.user.option.ExitOption;
+import com.sviryd.mikhail.service.console.user.option.ExitCacheOption;
 import com.sviryd.mikhail.service.console.user.option.FindOneUserByIdOption;
 import com.sviryd.mikhail.service.console.user.option.FirstNameUserOption;
 import com.sviryd.mikhail.service.console.user.option.LastNameOption;
@@ -24,9 +27,9 @@ import com.sviryd.mikhail.service.console.user.option.ShowUsersByLastNameOption;
 import com.sviryd.mikhail.service.console.user.option.ShowUsersByNumberOption;
 import com.sviryd.mikhail.service.console.user.option.ShowUsersByRoleOption;
 import com.sviryd.mikhail.service.console.user.option.UpdateUserOption;
-import com.sviryd.mikhail.service.console.user.option.DownloadUsersAppendToExistingFileOption;
-import com.sviryd.mikhail.service.console.user.option.DownloadUsersInNewFileOption;
-import com.sviryd.mikhail.service.console.user.option.DownloadUsersRewriteExistingFileOption;
+import com.sviryd.mikhail.service.console.user.option.UploadMergeIfAbsentOption;
+import com.sviryd.mikhail.service.console.user.option.UploadMergeIfPresentOption;
+import com.sviryd.mikhail.service.console.user.option.UploadRewriteOption;
 
 import java.io.Closeable;
 import java.util.Scanner;
@@ -94,14 +97,16 @@ public class Console implements Closeable {
         final DeleteUserByIdOption delete = new DeleteUserByIdOption("Enter user id: ");
         final BoxOption show = new BoxOption("Options:\n");
         final BoxOption download = new BoxOption("Options:\n");
-        final ExitOption exitOption = new ExitOption("EXIT");
+        final BoxOption upload = new BoxOption("Options:\n");
+        final ExitCacheOption exitCacheOption = new ExitCacheOption("EXIT");
 
         handler.addOption(2, firstNameUserOption);
         handler.addOption(3, findOneUserByIdUpdateOption);
         handler.addOption(4, delete);
         handler.addOption(5, show);
         handler.addOption(7, download);
-        handler.addOption(10, exitOption);
+        handler.addOption(8, upload);
+        handler.addOption(10, exitCacheOption);
 
         final BoxOption main = new BoxOption("Options:\n");
         main.addOption("Create user", firstNameUserOption);
@@ -109,7 +114,8 @@ public class Console implements Closeable {
         main.addOption("Delete user", delete);
         main.addOption("Show user/users", show);
         main.addOption("Download", download);
-        main.addOption("Exit", exitOption);
+        main.addOption("Upload", upload);
+        main.addOption("Exit", exitCacheOption);
         handler.addOption(10, main);
         handler.setNext(1, 10);
 
@@ -124,7 +130,7 @@ public class Console implements Closeable {
         final NumberOption numberOption2 = new NumberOption("Enter phone number(2): ");
         final NumberOption numberOption3 = new NumberOption("Enter phone number(3): ");
         final NumberExcessOption numberExcessOption = new NumberExcessOption("Enter phone number: ");
-        final SaveUserOption saveUserOption = new SaveUserOption("User is saved.\n");
+        final SaveUserOption saveUserOption = new SaveUserOption("User is created.\n");
 
         final BoxOption choseRole2 = new BoxOption("Options:\n");
         choseRole2.addOption("Do you want to enter one more role?", roleOption2);
@@ -240,17 +246,17 @@ public class Console implements Closeable {
         handler.setNext(31, 48);
         handler.setNext(32, 48);
         handler.setNext(33, 34);
-        handler.setNext(35,36);
+        handler.setNext(35, 36);
         handler.setNext(37, 38);
         handler.setNext(39, 33);
         handler.setNext(40, 41);
-        handler.setNext(42,43);
-        handler.setNext(44,45);
+        handler.setNext(42, 43);
+        handler.setNext(44, 45);
         handler.setNext(46, 40);
         handler.setNext(47, 10);
 
         // DELETE
-        handler.setNext(4,10);
+        handler.setNext(4, 10);
 
         // SHOW
         final ShowOneUserByIdOption showOneUserByIdOption = new ShowOneUserByIdOption("Enter user's id: ");
@@ -260,7 +266,7 @@ public class Console implements Closeable {
         final ShowUsersByRoleOption showUsersByRoleOption = new ShowUsersByRoleOption("Enter user's role: ");
         final ShowUsersByNumberOption showUsersByNumberOption = new ShowUsersByNumberOption("Enter user's phone number: ");
         final ShowAllUsersOption showAllUsersOption = new ShowAllUsersOption("List of users:\n");
-        show.addOption("Show user by id",showOneUserByIdOption);
+        show.addOption("Show user by id", showOneUserByIdOption);
         show.addOption("Show users by first name", showUsersByFirstNameOption);
         show.addOption("Show users by last name", showUsersByLastNameOption);
         show.addOption("Show users by email", showUsersByEmailOption);
@@ -296,6 +302,20 @@ public class Console implements Closeable {
         handler.setNext(55, 10);
         handler.setNext(56, 10);
         handler.setNext(57, 10);
+
+        // UPLOAD
+        final UploadRewriteOption uploadRewriteOption = new UploadRewriteOption("Enter absolute path to file (including file name): ");
+        final UploadMergeIfAbsentOption uploadMergeIfAbsentOption = new UploadMergeIfAbsentOption("Enter absolute path to file (including file name): ");
+        final UploadMergeIfPresentOption uploadMergeIfPresentOption = new UploadMergeIfPresentOption("Enter absolute path to file (including file name): ");
+        upload.addOption("Upload and rewrite", uploadRewriteOption);
+        upload.addOption("Upload and merge if absent", uploadMergeIfAbsentOption);
+        upload.addOption("Upload and merge if present", uploadMergeIfPresentOption);
+        handler.addOption(58, uploadRewriteOption);
+        handler.addOption(59, uploadMergeIfAbsentOption);
+        handler.addOption(60, uploadMergeIfPresentOption);
+        handler.setNext(58, 10);
+        handler.setNext(59, 10);
+        handler.setNext(60, 10);
 
         Scanner scanner = new Scanner(System.in);
         Console console = new Console(handler, scanner);

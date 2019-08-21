@@ -2,24 +2,24 @@ package com.sviryd.mikhail.service.console.user.option;
 
 import com.sviryd.mikhail.console.exception.ExitException;
 import com.sviryd.mikhail.console.option.Option;
-import com.sviryd.mikhail.service.console.user.dao.ConsoleUserService;
-import com.sviryd.mikhail.service.console.user.dao.ConsoleUsersService;
-import com.sviryd.mikhail.service.console.user.dao.IConsoleUserService;
-import com.sviryd.mikhail.service.console.user.dao.IConsoleUsersService;
+import com.sviryd.mikhail.service.console.user.cache.IConsoleUserCacheService;
+import com.sviryd.mikhail.service.console.user.cache.IConsoleUsersCacheService;
+import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUserCacheService;
+import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUsersCacheService;
 
 import java.util.Scanner;
 
 public class OpenOption extends Option {
-    private IConsoleUsersService usersService;
-    private IConsoleUserService userService;
+    private IConsoleUsersCacheService usersService;
+    private IConsoleUserCacheService userService;
 
     public OpenOption(String optionName) {
         super(optionName);
-        this.usersService = new ConsoleUsersService();
-        this.userService = new ConsoleUserService();
+        this.usersService = new ConsoleUsersCacheService();
+        this.userService = new ConsoleUserCacheService();
     }
 
-    public OpenOption(String optionName, IConsoleUsersService usersService, IConsoleUserService userService) {
+    public OpenOption(String optionName, IConsoleUsersCacheService usersService, IConsoleUserCacheService userService) {
         super(optionName);
         this.usersService = usersService;
         this.userService = userService;

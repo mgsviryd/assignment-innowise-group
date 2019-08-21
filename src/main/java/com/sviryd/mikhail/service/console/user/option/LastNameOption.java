@@ -2,27 +2,28 @@ package com.sviryd.mikhail.service.console.user.option;
 
 import com.sviryd.mikhail.console.option.Option;
 import com.sviryd.mikhail.dao.entity.User;
-import com.sviryd.mikhail.service.console.user.dao.ConsoleUserService;
-import com.sviryd.mikhail.service.console.user.dao.IConsoleUserService;
+import com.sviryd.mikhail.service.console.user.cache.IConsoleUserCacheService;
+import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUserCacheService;
 
 import java.util.Scanner;
 
 public class LastNameOption extends Option {
-    private IConsoleUserService userService;
+    private IConsoleUserCacheService userService;
 
     public LastNameOption(String optionName) {
         super(optionName);
-        this.userService = new ConsoleUserService();
+        this.userService = new ConsoleUserCacheService();
     }
 
-    public LastNameOption(String optionName, IConsoleUserService userService) {
+    public LastNameOption(String optionName, IConsoleUserCacheService userService) {
         super(optionName);
         this.userService = userService;
     }
+
     @Override
     public void process(Scanner scanner) {
-        final String input = scanner.nextLine();
+        final String lastName = scanner.nextLine();
         User user = userService.getUser();
-        user.setLastName(input);
+        user.setLastName(lastName);
     }
 }

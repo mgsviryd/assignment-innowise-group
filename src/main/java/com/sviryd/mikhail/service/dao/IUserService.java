@@ -1,12 +1,10 @@
-package com.sviryd.mikhail.dao.console;
+package com.sviryd.mikhail.service.dao;
 
 import com.sviryd.mikhail.dao.entity.User;
 
 import java.util.List;
 
-public interface IConsoleUsersDao {
-    void createTemporaryTable();
-    void deleteTemporaryTable();
+public interface IUserService {
     boolean save(User user);
     User update(User user);
     User findOne(int id);
@@ -18,5 +16,6 @@ public interface IConsoleUsersDao {
     Iterable<User> findAll();
     int count();
     User delete(int id);
+    void deleteAll();
     boolean exists(int id);
 }

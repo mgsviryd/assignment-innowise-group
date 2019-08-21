@@ -1,26 +1,26 @@
 package com.sviryd.mikhail.service.console.user.option;
 
-import com.sviryd.mikhail.console.option.Option;
 import com.sviryd.mikhail.console.exception.OptionException;
+import com.sviryd.mikhail.console.option.Option;
 import com.sviryd.mikhail.dao.entity.User;
-import com.sviryd.mikhail.service.console.user.dao.ConsoleUserService;
-import com.sviryd.mikhail.service.console.user.dao.ConsoleUsersService;
-import com.sviryd.mikhail.service.console.user.dao.IConsoleUserService;
-import com.sviryd.mikhail.service.console.user.dao.IConsoleUsersService;
+import com.sviryd.mikhail.service.console.user.cache.IConsoleUserCacheService;
+import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUserCacheService;
+import com.sviryd.mikhail.service.console.user.cache.impl.ConsoleUsersCacheService;
+import com.sviryd.mikhail.service.dao.IUserService;
 
 import java.util.Scanner;
 
 public class FindOneUserByIdOption extends Option {
-    private IConsoleUsersService usersService;
-    private IConsoleUserService userService;
+    private IUserService usersService;
+    private IConsoleUserCacheService userService;
 
     public FindOneUserByIdOption(String optionName) {
         super(optionName);
-        this.usersService = new ConsoleUsersService();
-        this.userService = new ConsoleUserService();
+        this.usersService = new ConsoleUsersCacheService();
+        this.userService = new ConsoleUserCacheService();
     }
 
-    public FindOneUserByIdOption(String optionName, IConsoleUsersService usersService, IConsoleUserService userService) {
+    public FindOneUserByIdOption(String optionName, IUserService usersService, IConsoleUserCacheService userService) {
         super(optionName);
         this.usersService = usersService;
         this.userService = userService;

@@ -1,7 +1,6 @@
 package com.sviryd.mikhail.io;
 
 import com.sviryd.mikhail.dao.entity.User;
-import lombok.AllArgsConstructor;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -9,22 +8,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-@AllArgsConstructor
-public class UserWriter {
-    public void rewrite(File dataFile, Iterable<User> users) throws IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                new BufferedOutputStream(new FileOutputStream(dataFile)))) {
-            for (User user : users)
-                out.writeObject(user);
-        }
+public class UserWriter implements AutoCloseable {
+    private ObjectOutputStream inp;
+
+    public UserWriter(File fileData) throws IOException {
+        inp = new ObjectOutputStream((new BufferedOutputStream((new FileOutputStream(fileData)))));
     }
 
-    public void append(File dataFile, Iterable<User> users) throws IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                new BufferedOutputStream(new FileOutputStream(dataFile)))) {
-            out.reset();
-            for (User user : users)
-                out.writeObject(user);
-        }
+    public void write(User user) throws IOException, ClassNotFoundException {
+        inp.writeObject(user);
+    }
+
+    @Override
+    public void close() throws Exception {
+        inp.close();
     }
 }

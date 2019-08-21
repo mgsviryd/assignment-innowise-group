@@ -1,8 +1,8 @@
-package com.sviryd.mikhail.dao.hash;
+package com.sviryd.mikhail.cache;
 
 import java.util.HashMap;
 
-public class ConsoleHash {
+public class ConsoleCache {
     private static final HashMap<String, Object> MAP = new HashMap<>();
     public static Object get(String string){
         return MAP.get(string);

@@ -1,8 +1,8 @@
-package com.sviryd.mikhail.service.console.user.dao;
+package com.sviryd.mikhail.service.console.user.cache;
 
 import com.sviryd.mikhail.dao.entity.User;
 
-public interface IConsoleUserService {
+public interface IConsoleUserCacheService {
     User createTemporaryUser();
     void deleteTemporaryUser();
     User clearFields();

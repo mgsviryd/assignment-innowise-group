@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import javax.validation.ValidationException;
 
 @AllArgsConstructor
-public class PhoneNumberSizeValidationService{
+public class PhoneNumberSizeValidationService {
     private static final int MIN = 1;
     private static final int MAX = 3;
     public static final String MESSAGE = "Number of phone numbers must be in range from " + MIN + " to " + MAX + " inclusive.";
