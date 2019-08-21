@@ -44,6 +44,8 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
     public void createTemporaryTable() {
         if (ConsoleCache.get(CONSOLE_USERS) == null) {
             ConsoleCache.put(CONSOLE_USERS, new HashMap<Integer, User>());
+        }
+        if (ConsoleCache.get(CONSOLE_USERS_ID) == null) {
             ConsoleCache.put(CONSOLE_USERS_ID, 0);
         }
     }
@@ -57,9 +59,8 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
     @Override
     public void uploadMergeIfAbsent(List<User> users) {
         for (User user : users) {
-            final User absent = findOne(user.getId());
-            if (absent == null) {
-                save(user);
+            if (!exists(user.getId())) {
+                getUsersCache().put(user.getId(), user);
             }
         }
         resetUserId();
@@ -68,11 +69,7 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
     @Override
     public void uploadMergeIfPresent(List<User> users) {
         for (User user : users) {
-            final User present = findOne(user.getId());
-            if (present != null) {
-                delete(present.getId());
-            }
-            save(user);
+            getUsersCache().put(user.getId(), user);
         }
         resetUserId();
     }
@@ -81,7 +78,7 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
     public void uploadRewrite(List<User> users) {
         deleteAll();
         for (User user : users) {
-            save(user);
+            getUsersCache().put(user.getId(), user);
         }
     }
 
