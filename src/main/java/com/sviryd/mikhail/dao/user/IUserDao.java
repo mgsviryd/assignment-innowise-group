@@ -1,4 +1,4 @@
-package com.sviryd.mikhail.dao.console.user;
+package com.sviryd.mikhail.dao.user;
 
 import com.sviryd.mikhail.dao.entity.User;
 

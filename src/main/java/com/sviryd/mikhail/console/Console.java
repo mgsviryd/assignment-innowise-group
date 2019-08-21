@@ -194,7 +194,7 @@ public class Console implements Closeable {
         final NumberOption numberUpdateOption2 = new NumberOption("Enter phone number(2): ");
         final NumberOption numberUpdateOption3 = new NumberOption("Enter phone number(3): ");
         final NumberExcessOption numberUpdateExcessOption = new NumberExcessOption("Enter phone number: ");
-        final UpdateUserOption updateUserOption = new UpdateUserOption("User is updated.\n");
+        final UpdateUserOption updateUserOption = new UpdateUserOption("User was updated.\n");
 
         final BoxOption selectField = new BoxOption("Update field:\n");
         selectField.addOption("first name", firstNameUpdateUserOption);

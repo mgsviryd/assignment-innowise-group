@@ -5,16 +5,26 @@ import com.sviryd.mikhail.cache.console.IConsoleUsersCache;
 import com.sviryd.mikhail.config.ConsoleConfig;
 import com.sviryd.mikhail.dao.entity.User;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ConsoleUsersCache implements IConsoleUsersCache {
     private static final String CONSOLE_USERS = ConsoleConfig.CONSOLE_USERS_CACHE;
     private static final String CONSOLE_USERS_ID = ConsoleConfig.CONSOLE_USERS_ID_CACHE;
 
-    private List<User> getUsers() {
-        return (List<User>) ConsoleCache.get(CONSOLE_USERS);
+    private Collection<User> getUsers() {
+        final Collection<User> values = getUsersCache().values();
+        if (values == null) return Collections.emptyList();
+        return values;
+    }
+
+    private Map<Integer, User> getUsersCache() {
+        return (Map<Integer, User>) ConsoleCache.get(CONSOLE_USERS);
     }
 
     private Integer increaseAndGetUsersId() {
@@ -25,15 +35,15 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
     }
 
     private void resetUserId() {
-        final Integer max = getUsers().stream().map(User::getId).max(Math::max).orElseGet(() -> 0);
+        final Integer max = getUsersCache().keySet().stream().max(Comparator.naturalOrder()).orElseGet(() -> 0);
         ConsoleCache.put(CONSOLE_USERS_ID, max);
     }
 
 
     @Override
     public void createTemporaryTable() {
-        if (getUsers() == null) {
-            ConsoleCache.put(CONSOLE_USERS, new ArrayList<User>());
+        if (ConsoleCache.get(CONSOLE_USERS) == null) {
+            ConsoleCache.put(CONSOLE_USERS, new HashMap<Integer, User>());
             ConsoleCache.put(CONSOLE_USERS_ID, 0);
         }
     }
@@ -59,7 +69,7 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
     public void uploadMergeIfPresent(List<User> users) {
         for (User user : users) {
             final User present = findOne(user.getId());
-            if (present != null){
+            if (present != null) {
                 delete(present.getId());
             }
             save(user);
@@ -78,19 +88,18 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
     @Override
     public boolean save(User user) {
         user.setId(increaseAndGetUsersId());
-        return getUsers().add(user);
+        getUsersCache().put(user.getId(), user);
+        return true;
     }
 
     @Override
     public User update(User user) {
-        User one = findOne(user.getId());
-        int i = getUsers().indexOf(one);
-        return getUsers().set(i, user);
+        return getUsersCache().put(user.getId(), user);
     }
 
     @Override
     public User findOne(int id) {
-        return getUsers().stream().filter(x -> x.getId().equals(id)).findFirst().orElseGet(() -> null);
+        return getUsersCache().get(id);
     }
 
     @Override
@@ -125,22 +134,21 @@ public class ConsoleUsersCache implements IConsoleUsersCache {
 
     @Override
     public int count() {
-        return getUsers().size();
+        return getUsersCache().size();
     }
 
     @Override
     public User delete(int id) {
-        return getUsers().remove(id);
+        return getUsersCache().remove(id);
     }
 
     @Override
     public void deleteAll() {
-        getUsers().clear();
+        getUsersCache().clear();
     }
 
     @Override
     public boolean exists(int id) {
-        final User user = findOne(id);
-        return user != null;
+        return getUsersCache().containsKey(id);
     }
 }

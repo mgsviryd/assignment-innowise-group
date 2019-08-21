@@ -1,6 +1,6 @@
 package com.sviryd.mikhail.cache.console;
 
-import com.sviryd.mikhail.dao.console.user.IUserDao;
+import com.sviryd.mikhail.dao.user.IUserDao;
 import com.sviryd.mikhail.dao.entity.User;
 
 import java.util.List;
