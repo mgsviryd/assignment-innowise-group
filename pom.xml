@@ -40,7 +40,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>com.sviryd.mikhail.console.Console</mainClass>
+                            <mainClass>com.sviryd.mikhail.console.console.Console</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
