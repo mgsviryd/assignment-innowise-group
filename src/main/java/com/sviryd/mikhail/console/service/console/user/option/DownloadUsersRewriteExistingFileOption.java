@@ -2,7 +2,7 @@ package com.sviryd.mikhail.console.service.console.user.option;
 
 import com.sviryd.mikhail.console.console.exception.OptionException;
 import com.sviryd.mikhail.console.console.option.Option;
-import com.sviryd.mikhail.console.io.UserDownloader;
+import com.sviryd.mikhail.console.io.user.UserDownloader;
 import com.sviryd.mikhail.console.service.console.user.cache.impl.ConsoleUsersCacheService;
 import com.sviryd.mikhail.console.service.dao.IUserService;
 

@@ -1,4 +1,4 @@
-package com.sviryd.mikhail.console.io;
+package com.sviryd.mikhail.console.io.user;
 
 import com.sviryd.mikhail.console.dao.entity.User;
 

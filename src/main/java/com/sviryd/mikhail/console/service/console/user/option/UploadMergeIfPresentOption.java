@@ -2,7 +2,7 @@ package com.sviryd.mikhail.console.service.console.user.option;
 
 import com.sviryd.mikhail.console.console.option.Option;
 import com.sviryd.mikhail.console.dao.entity.User;
-import com.sviryd.mikhail.console.io.UserUploader;
+import com.sviryd.mikhail.console.io.user.UserUploader;
 import com.sviryd.mikhail.console.service.console.user.cache.IConsoleUsersCacheService;
 import com.sviryd.mikhail.console.service.console.user.cache.impl.ConsoleUsersCacheService;
 
