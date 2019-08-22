@@ -4,48 +4,38 @@ import com.sviryd.mikhail.console.service.validation.exception.ValidationExcepti
 import org.junit.Before;
 import org.junit.Test;
 
-public class EmailPatternValidationServiceTest {
-    private EmailPatternValidationService service;
+public class PhoneNumberPatternValidationServiceTest {
+    private PhoneNumberPatternValidationService service;
     private String regex;
 
     @Before
     public void init() {
-        regex = "[a-z0-9]+@[a-z]+\\.[a-z]+";
-        service = new EmailPatternValidationService(regex, "Data is not valid.");
+        regex = "375[0-9]{2}\\s[0-9]{7}";
+        service = new PhoneNumberPatternValidationService(regex, "Data is not valid.");
     }
 
     @Test
     public void v1() throws ValidationException {
-        service.validate("p@x.c");
+        service.validate("37544 7313873");
     }
 
     @Test
     public void v2() throws ValidationException {
-        service.validate("part@x.com");
+        service.validate("37501 0000000");
     }
 
     @Test(expected = ValidationException.class)
     public void v3() throws ValidationException {
-        service.validate("partxcom");
+        service.validate("37544 7");
     }
 
     @Test(expected = ValidationException.class)
     public void v4() throws ValidationException {
-        service.validate("part@xcom");
+        service.validate("375447113873");
     }
 
     @Test(expected = ValidationException.class)
     public void v5() throws ValidationException {
-        service.validate("part@.com");
-    }
-
-    @Test(expected = ValidationException.class)
-    public void v6() throws ValidationException {
-        service.validate("part@x.com1");
-    }
-
-    @Test(expected = ValidationException.class)
-    public void v7() throws ValidationException {
-        service.validate("part@x1.com");
+        service.validate("37444 7113873");
     }
 }

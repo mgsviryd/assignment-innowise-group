@@ -20,7 +20,7 @@ public class PhoneNumberSizeValidationService {
     }
 
     public void validate(User user) throws ValidationException {
-        final int size = user.getRoles().size();
+        final int size = user.getPhoneNumbers().size();
         if (size < min || size > max) {
             throw new ValidationException(message);
         }

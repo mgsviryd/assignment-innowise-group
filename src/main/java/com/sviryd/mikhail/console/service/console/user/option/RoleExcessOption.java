@@ -5,22 +5,22 @@ import com.sviryd.mikhail.console.console.option.Option;
 import com.sviryd.mikhail.console.dao.entity.User;
 import com.sviryd.mikhail.console.service.console.user.cache.IConsoleUserCacheService;
 import com.sviryd.mikhail.console.service.console.user.cache.impl.ConsoleUserCacheService;
-import com.sviryd.mikhail.console.service.validation.console.user.RolesSizeValidationService;
+import com.sviryd.mikhail.console.service.validation.console.user.RoleSizeValidationService;
 import com.sviryd.mikhail.console.service.validation.exception.ValidationException;
 
 import java.util.Scanner;
 
 public class RoleExcessOption extends Option {
     private IConsoleUserCacheService userService;
-    private RolesSizeValidationService sizeValidationService;
+    private RoleSizeValidationService sizeValidationService;
 
     public RoleExcessOption(String optionName) {
         super(optionName);
         this.userService = new ConsoleUserCacheService();
-        this.sizeValidationService = new RolesSizeValidationService();
+        this.sizeValidationService = new RoleSizeValidationService();
     }
 
-    public RoleExcessOption(String optionName, IConsoleUserCacheService userService, RolesSizeValidationService sizeValidationService) {
+    public RoleExcessOption(String optionName, IConsoleUserCacheService userService, RoleSizeValidationService sizeValidationService) {
         super(optionName);
         this.userService = userService;
         this.sizeValidationService = sizeValidationService;

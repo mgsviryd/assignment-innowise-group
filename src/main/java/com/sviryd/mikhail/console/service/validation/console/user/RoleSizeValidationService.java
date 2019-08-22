@@ -5,7 +5,7 @@ import com.sviryd.mikhail.console.service.validation.exception.ValidationExcepti
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class RolesSizeValidationService {
+public class RoleSizeValidationService {
     private static final int MIN = 1;
     private static final int MAX = 3;
     public static final String MESSAGE = "Number of unique roles must be in range from " + MIN + " to " + MAX + " inclusive.";
@@ -13,7 +13,7 @@ public class RolesSizeValidationService {
     private int max;
     private String message;
 
-    public RolesSizeValidationService() {
+    public RoleSizeValidationService() {
         this.min = MIN;
         this.min = MAX;
         this.message = MESSAGE;
