@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class EmailPatternValidationService {
-    private static final String REGEX = "[a-z0-9]+@[a-z]+.[a-z]+";
+    private static final String REGEX = "[a-z0-9]+@[a-z]+\\.[a-z]+";
     private static final String MESSAGE = "Your email is not like *@*.* where * is any sequence of characters and letters.";
 
     private String regex;
