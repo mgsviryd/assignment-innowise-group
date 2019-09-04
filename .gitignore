@@ -1,5 +1,6 @@
 ### TARGET ###
 target
+*/target
 
 
 ### IntelliJ IDEA ###
@@ -7,3 +8,6 @@ target
 *.iws
 *.iml
 *.ipr
+
+### DOC ###
+~$*
