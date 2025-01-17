@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.sviryd.mikhail</groupId>
-  <artifactId>console</artifactId>
+  <groupId>com.sviryd</groupId>
+  <artifactId>assignment-innowise-group</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
-  <name>console</name>
+  <name>assignment-innowise-group</name>
   <url>http://maven.apache.org</url>
 
     <properties>
@@ -40,7 +40,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>com.sviryd.mikhail.console.console.Console</mainClass>
+                            <mainClass>com.sviryd.assignment_innowise_group.console.Console</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
